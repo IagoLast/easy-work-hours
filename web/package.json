@@ -1,0 +1,12 @@
+{
+  "name": "journey-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "author": "@iagolast",
+  "license": "MIT"
+}
