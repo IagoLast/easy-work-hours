@@ -4,5 +4,16 @@
       "npm --prefix \"$RESOURCE_DIR\" run lint",
       "npm --prefix \"$RESOURCE_DIR\" run build"
     ]
+  },
+  "hosting": {
+    "public": "app",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "jest.config.js",
+      "package.json",
+      "package-lock.json"
+    ]
   }
 }
