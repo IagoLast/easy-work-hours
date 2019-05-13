@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Report</title>
+    <script type="module" src="src/app.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #f8f8f9;
+            font-weight: 300;
+        }
+
+        header {
+            padding: 24px 30px;
+            color: #f8f8f9;
+            background: #296b63;
+            display: flex;
+            align-items: center;
+        }
+
+        header span {
+            font-size: 24px;
+            margin-left: 15px;
+        }
+
+        main section div {
+            flex: 1;
+            margin: 30px auto;
+            text-align: center;
+
+        }
+
+        main section div img {
+            display: block;
+            margin: auto;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+        }
+
+        section.dark {
+            background: #296b63;
+            color: #f8f8f9;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        @media (min-width: 924px) {
+            main section {
+                flex-direction: row;
+            }
+
+            main section div {
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.png" alt="logo" height="32px">
+        <span>Easy Work Hours</span>
+    </header>
+    <main>
+
+        <section>
+            <div>
+                <img height="300px" src="img/time.svg" alt="Time management">
+            </div>
+            <div>
+                <h2> Easy time tracking.</h2>
+                <a href="https://slack.com/oauth/authorize?client_id=216552523286.632214051472&scope=commands">
+                    <img alt="Add to Slack" height="40" width="139"
+                        src="https://platform.slack-edge.com/img/add_to_slack.png"
+                        srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x">
+                </a>
+            </div>
+        </section>
+
+        <section class="dark">
+            <div>
+                <h2> You only need to remember 3 commands</h2>
+            </div>
+        </section>
+        <section>
+            <div>
+                <img height="300px" src="img/hello.svg" alt="Reports">
+            </div>
+            <div>
+                <h2> Hello, goodbye</h2>
+                <p>
+                    Type those commands and the app will start tracking your time.
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <h2> Report generation</h2>
+                <p>
+                    Easy work hours generates custom monthly reports
+                </p>
+            </div>
+            <div>
+                <img height="300px" src="img/report.svg" alt="Reports">
+            </div>
+        </section>
+        <section class="dark">
+            <div>
+                <h2> Get started for free </h2>
+                <p>Another <a href="https://twitter.com/iagolast">@iagolast</a> pet project. Use it with caution ;)</p>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
