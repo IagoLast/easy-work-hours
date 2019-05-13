@@ -14,7 +14,7 @@ export function getDays(formatedEntries) {
         }
     }
     for (let key in returnValue) {
-        returnValue[key].hours = _computeTotalHours(returnValue[key].register);
+        returnValue[key].seconds = _computeTotalHoursInSeconds(returnValue[key].register);
     }
     return returnValue;
 }
@@ -22,15 +22,15 @@ export function getDays(formatedEntries) {
 function _transformElement(rawElement) {
     return {
         action: _getAction(rawElement.fields.command.stringValue),
-        date: new Date(parseInt(rawElement.fields.date.integerValue)),
+        date: new Date(rawElement.fields.date.timestampValue),
     }
 }
 
 function _getDateString({ date }) {
-    return `${date.getFullYear()}/${date.getMonth()}/${date.getDate()}`;
+    return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`;
 }
 
-function _computeTotalHours(dayObjects) {
+function _computeTotalHoursInSeconds(dayObjects) {
     let sorted = dayObjects.sort(_sortByDate);
     let total = 0;
     let data = Array.from(sorted);
@@ -41,7 +41,7 @@ function _computeTotalHours(dayObjects) {
         data = result.data;
     }
 
-    return total / (1000 * 60 * 60);
+    return total / 1000;
 }
 
 function _digest(sortedDayData) {
@@ -85,4 +85,4 @@ function _getAction(command) {
     }
 }
 
-export default { transform, getDays, _computeTotalHours }
+export default { transform, getDays, _computeTotalHours: _computeTotalHoursInSeconds }

@@ -10,10 +10,7 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "jest.config.js",
-      "package.json",
-      "package-lock.json"
+      "**/node_modules/**"
     ]
   }
 }

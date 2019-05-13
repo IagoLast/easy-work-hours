@@ -13,7 +13,7 @@ describe('data.service', () => {
                             stringValue: "/hi"
                         },
                         date: {
-                            integerValue: "1557509206161"
+                            timestampValue: "2019-05-10T17:26:46.161Z"
                         }
                     },
                     createTime: "2019-05-10T17:26:46.300695Z",
@@ -26,7 +26,7 @@ describe('data.service', () => {
                             stringValue: "/bye"
                         },
                         date: {
-                            integerValue: "1557509206161"
+                            timestampValue: "2019-05-10T17:26:46.161Z"
                         }
                     },
                     createTime: "2019-05-10T17:26:46.300695Z",
@@ -56,8 +56,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/11': {
-                    hours: 8,
+                '2019/6/11': {
+                    seconds: 28800,
                     register: dummyEntries,
                 }
             });
@@ -73,8 +73,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/11': {
-                    hours: 8,
+                '2019/6/11': {
+                    seconds: 28800,
                     register: dummyEntries,
                 }
             });
@@ -89,8 +89,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/14': {
-                    hours: 8,
+                '2019/6/14': {
+                    seconds: 28800,
                     register: dummyEntries,
                 }
             });
@@ -106,8 +106,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/14': {
-                    hours: 8,
+                '2019/6/14': {
+                    seconds: 28800,
                     register: dummyEntries,
                 }
             });
@@ -117,7 +117,7 @@ describe('data.service', () => {
             const dummyEntries = [
                 { action: 'SIGN_IN', date: new Date(2019, 5, 14, 8) },
                 { action: 'SIGN_IN', date: new Date(2019, 5, 14, 9, 30) },
-                
+
                 { action: 'SIGN_OUT', date: new Date(2019, 5, 14, 13) },
                 { action: 'SIGN_IN', date: new Date(2019, 5, 14, 14) },
                 { action: 'SIGN_IN', date: new Date(2019, 5, 14, 14, 30) },
@@ -128,8 +128,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/14': {
-                    hours: 8,
+                '2019/6/14': {
+                    seconds: 28800,
                     register: dummyEntries,
                 }
             });
@@ -143,8 +143,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/14': {
-                    hours: 0,
+                '2019/6/14': {
+                    seconds: 0,
                     register: dummyEntries,
                 }
             });
@@ -157,8 +157,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/14': {
-                    hours: 0,
+                '2019/6/14': {
+                    seconds: 0,
                     register: dummyEntries,
                 }
             });
@@ -172,8 +172,8 @@ describe('data.service', () => {
 
             const actual = dataService.getDays(dummyEntries);
             expect(actual).toEqual({
-                '2019/5/14': {
-                    hours: 0,
+                '2019/6/14': {
+                    seconds: 0,
                     register: dummyEntries,
                 }
             });

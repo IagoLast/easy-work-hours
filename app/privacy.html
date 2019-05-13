@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Report</title>
+    <script type="module" src="src/app.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #f8f8f9;
+            font-weight: 300;
+        }
+
+        header {
+            padding: 24px 30px;
+            color: #f8f8f9;
+            background: #296b63;
+            display: flex;
+            align-items: center;
+        }
+
+        header span {
+            font-size: 24px;
+            margin-left: 15px;
+        }
+
+        main section div {
+            flex: 1;
+            margin: 30px auto;
+            max-width: 400px;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            padding: 60px;
+        }
+
+
+        @media (min-width: 924px) {
+            main section {
+                flex-direction: row;
+            }
+
+            main section div {
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="img/logo.png" alt="logo" height="32px">
+        <span>Easy Work Hours</span>
+    </header>
+    <main>
+
+        <section>
+            <div>
+                <h1>Privacy and security</h1>
+
+                <p>
+                    We want our policy to be short and easy to understand:
+                </p>
+
+                <p>
+                    We store the minimal amount of information in order to track the working hours. We do not store any
+                    type of personal information and like most of the websites we use
+                    cookies together with third-party services (Google Analytics) in order to improve our product.
+                    We assume that any user has read and accepts these terms.
+                </p>
+
+                <p>
+                    We keep the right to modify this privacy policy, please review it frequently. Changes and
+                    clarifications
+                    they will become effective immediately after their publication on the website.
+                </p>
+
+                <p>
+                    Feel free to read our source code and open issues at Github.
+                </p>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

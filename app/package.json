@@ -1,5 +1,5 @@
 {
-  "name": "journey-web",
+  "name": "easy-work-hours-web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,5 +8,9 @@
     "test:watch": "jest --watch"
   },
   "author": "@iagolast",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "esm": "^3.2.22",
+    "jest": "^24.8.0"
+  }
 }
