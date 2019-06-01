@@ -5,9 +5,9 @@ import viewService from './view.service.js';
 
 (async () => {
     const $table = document.querySelector('#table');
-    const { companyID, userID } = urlService.getURLParameters(window.location.href);
+    const { companyID, userID, month } = urlService.getURLParameters(window.location.href);
     const registers = await apiService.getRegisters(companyID, userID);
-    const sortedRegisters = dataService.formatAndSort(registers);
+    const sortedRegisters = dataService.formatAndSort(registers, { month });
     let totalSeconds = 0;
 
     sortedRegisters.forEach(item => {
