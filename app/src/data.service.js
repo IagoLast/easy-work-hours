@@ -25,7 +25,7 @@ export function formatAndSort(registers, filters) {
     const sortedData = [];
     for (const key in formatedData) {
         const date = new Date(key);
-        if (filters && filters.month) {
+        if (filters && filters.month >= 0) {
             if (date.getMonth() === filters.month) {
                 sortedData.push({
                     key: key,
