@@ -185,6 +185,14 @@ describe('data.service', () => {
             const actual = dataService.formatAndSort(registers);
             expect(actual).toEqual(_sortedDataElements);
         });
+
+        it('should filter the a list according to the given filters', () => {
+            const filters = {
+                month: 5, // January is 0
+            }
+            const actual = dataService.formatAndSort(registers, filters);
+            expect(actual).toEqual(_sortedDataElementsMonth6);
+        });
     })
 });
 
@@ -446,6 +454,32 @@ const _sortedDataElements = [
         ],
         "seconds": 7872.233
     },
+    {
+        "key": "2019/6/1",
+        "date": new Date("2019-05-31T22:00:00.000Z"),
+        "register": [
+            {
+                "action": "SIGN_IN",
+                "date": new Date("2019-06-01T08:50:00.660Z"),
+            },
+            {
+                "action": "SIGN_IN",
+                "date": new Date("2019-06-01T08:50:07.240Z"),
+            },
+            {
+                "action": "SIGN_OUT",
+                "date": new Date("2019-06-01T08:50:22.507Z"),
+            },
+            {
+                "action": "SIGN_IN",
+                "date": new Date("2019-06-01T08:50:27.002Z"),
+            }
+        ],
+        "seconds": 21.847
+    }
+];
+
+const _sortedDataElementsMonth6 = [
     {
         "key": "2019/6/1",
         "date": new Date("2019-05-31T22:00:00.000Z"),

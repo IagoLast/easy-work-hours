@@ -18,18 +18,32 @@ export function getDays(formatedEntries) {
     return returnValue;
 }
 
-export function formatAndSort(registers) {
+export function formatAndSort(registers, filters) {
+
     const formatedData = getDays(transform(registers));
 
     const sortedData = [];
     for (const key in formatedData) {
-        sortedData.push({
-            key: key,
-            date: new Date(key),
-            register: formatedData[key].register,
-            seconds: formatedData[key].seconds,
-        });
+        const date = new Date(key);
+        if (filters && filters.month) {
+            if (date.getMonth() === filters.month) {
+                sortedData.push({
+                    key: key,
+                    date,
+                    register: formatedData[key].register,
+                    seconds: formatedData[key].seconds,
+                });
+            }
+        } else {
+            sortedData.push({
+                key: key,
+                date,
+                register: formatedData[key].register,
+                seconds: formatedData[key].seconds,
+            });
+        }
     }
+
     sortedData.sort((a, b) => a.date.getTime() - b.date.getTime());
     return sortedData;
 }
