@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch --env=jsdom"
   },
   "author": "@iagolast",
   "license": "MIT",
   "devDependencies": {
     "esm": "^3.2.22",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "jest-fetch-mock": "^2.1.2"
   }
 }

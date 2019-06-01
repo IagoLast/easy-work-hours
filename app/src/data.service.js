@@ -1,4 +1,3 @@
-
 export function transform(rawElements) {
     return rawElements.map(_transformElement);
 }
@@ -17,6 +16,22 @@ export function getDays(formatedEntries) {
         returnValue[key].seconds = _computeTotalHoursInSeconds(returnValue[key].register);
     }
     return returnValue;
+}
+
+export function formatAndSort(registers) {
+    const formatedData = getDays(transform(registers));
+
+    const sortedData = [];
+    for (const key in formatedData) {
+        sortedData.push({
+            key: key,
+            date: new Date(key),
+            register: formatedData[key].register,
+            seconds: formatedData[key].seconds,
+        });
+    }
+    sortedData.sort((a, b) => a.date.getTime() - b.date.getTime());
+    return sortedData;
 }
 
 function _transformElement(rawElement) {
@@ -85,4 +100,4 @@ function _getAction(command) {
     }
 }
 
-export default { transform, getDays, _computeTotalHours: _computeTotalHoursInSeconds }
+export default { transform, getDays, formatAndSort, _computeTotalHours: _computeTotalHoursInSeconds }
