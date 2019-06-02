@@ -1,6 +1,4 @@
-require = require('esm')(module); // eslint-disable-line
-const apiService = require('./api.service.js').default;
-
+import apiService from './api.service.js';
 
 describe('api.service', () => {
 	describe('.getRegisters(companyID, userID', () => {
