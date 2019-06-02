@@ -1,4 +1,4 @@
-const require = require('esm')(module); // eslint-disable-line
+require = require('esm')(module); // eslint-disable-line
 const apiService = require('./api.service.js').default;
 
 

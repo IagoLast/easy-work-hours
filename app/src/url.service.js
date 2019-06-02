@@ -27,5 +27,10 @@ export function getURLParameters(href) {
 	return { companyID, userID, month };
 }
 
+export function build(searchParams) {
+	return `${window.location.href.split('?')[0]}?${searchParams.toString()}`;
 
-export default { getURLParameters };
+}
+
+
+export default { getURLParameters, build };

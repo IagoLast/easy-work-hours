@@ -1,34 +1,34 @@
 import dataService from './data.service.js';
-import apiService from './api.service.js';
+import registerService from './register.service.js';
 import urlService from './url.service.js';
 import viewService from './view.service.js';
 
-(async () => {
-	_setupFilter();
-	const $table = document.querySelector('#table');
-	const { companyID, userID, month } = urlService.getURLParameters(window.location.href);
-	const registers = await apiService.getRegisters(companyID, userID);
-	const sortedRegisters = dataService.formatAndSort(registers, { month });
-	let totalSeconds = 0;
 
-	sortedRegisters.forEach(item => {
-		totalSeconds += item.seconds;
-		viewService.addItemToTable(item, $table);
-	});
+export default class App {
+	constructor() {
+		this.url = new URL(window.location.href);
 
-	document.querySelector('#total').innerText = `Horas totales: ${viewService.sec2time(totalSeconds)}`;
-})();
+		this.searchParams = new URLSearchParams(this.url.search);
+		this.$selectMonth = document.querySelector('#select-month');
+		if (this.searchParams.get('m')) {
+			this.$selectMonth.value = this.searchParams.get('m');
+		}
+		this.$table = document.querySelector('#table');
 
-function _setupFilter() {
-	const url = new URL(window.location.href);
-	const searchParams = new URLSearchParams(url.search);
-	const $selectMonth = document.querySelector('#select-month');
-  
-	$selectMonth.value = searchParams.get('m');
+		this.$selectMonth.addEventListener('change', this._onMonthSelected.bind(this));
+	}
 
-	$selectMonth.addEventListener('change', event => {
-		const m = event.target.value;
-		searchParams.set('m', m);
-		window.location.href = `${window.location.href.split('?')[0]}?${searchParams.toString()}`;
-	});
+	async render() {
+		const { companyID, userID, month } = urlService.getURLParameters(window.location.href);
+		const registers = await registerService.getRegisters(companyID, userID, { month });
+		const totalSeconds = dataService.computeTotalSeconds(registers);
+
+		registers.forEach(item => viewService.addItemToTable(item, this.$table));
+		document.querySelector('#total').innerText = `Horas totales: ${viewService.sec2time(totalSeconds)}`;
+	}
+
+	_onMonthSelected(event) {
+		this.searchParams.set('m', event.target.value);
+		window.location.href = urlService.build(this.searchParams);
+	}
 }

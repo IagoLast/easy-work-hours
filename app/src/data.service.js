@@ -1,3 +1,9 @@
+export function computeTotalSeconds(registers) {
+	let total = 0;
+	registers.forEach(item => total += item.seconds);
+	return total;
+}
+
 export function transform(rawElements) {
 	return rawElements.map(_transformElement);
 }
@@ -114,4 +120,4 @@ function _getAction(command) {
 	}
 }
 
-export default { transform, getDays, formatAndSort, _computeTotalHours: _computeTotalHoursInSeconds };
+export default { computeTotalSeconds, transform, getDays, formatAndSort, _computeTotalHours: _computeTotalHoursInSeconds };
