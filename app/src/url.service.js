@@ -16,10 +16,8 @@ export function getURLParameters(href) {
 	}
 
 	if (m) {
-		try {
-			month = parseInt(m);
-		}
-		catch (err) {
+		month = parseInt(m);
+		if (isNaN(month)) {
 			throw new Error('INVALID_URL: No "m" is not a valid integer');
 		}
 	}

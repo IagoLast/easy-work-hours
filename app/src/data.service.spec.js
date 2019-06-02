@@ -1,6 +1,4 @@
-require = require('esm')(module); // eslint-disable-line
-const dataService = require('./data.service').default;
-
+import dataService from './data.service.js';
 
 describe('data.service', () => {
 	describe('.transform(rawDataElements)', () => {
