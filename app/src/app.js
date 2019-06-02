@@ -1,70 +1,34 @@
 import dataService from './data.service.js';
+import registerService from './register.service.js';
+import urlService from './url.service.js';
+import viewService from './view.service.js';
 
 
-(async () => {
-    const $table = document.querySelector('#table');
-    const url = new URL(window.location.href);
-    const searchParams = new URLSearchParams(url.search);
-    const q = searchParams.get('q');
+export default class App {
+	constructor() {
+		this.url = new URL(window.location.href);
 
-    if (!q) {
-        return
-    }
+		this.searchParams = new URLSearchParams(this.url.search);
+		this.$selectMonth = document.querySelector('#select-month');
+		if (this.searchParams.get('m')) {
+			this.$selectMonth.value = this.searchParams.get('m');
+		}
+		this.$table = document.querySelector('#table');
 
-    const [companyID, userID] = atob(q).split(':');
+		this.$selectMonth.addEventListener('change', this._onMonthSelected.bind(this));
+	}
 
-    if (!companyID || !userID) {
-        return;
-    }
+	async render() {
+		const { companyID, userID, month } = urlService.getURLParameters(window.location.href);
+		const registers = await registerService.getRegisters(companyID, userID, { month });
+		const totalSeconds = dataService.computeTotalSeconds(registers);
 
-    const rawData = await fetch(`https://firestore.googleapis.com/v1beta1/projects/easyworkhours/databases/(default)/documents/registers/${companyID}/${userID}`);
-    const data = await rawData.json();
-    if (!data.documents) {
-        return;
-    }
-    const formatedData = dataService.getDays(dataService.transform(data.documents));
-    const sortedData = [];
-    let totalSeconds = 0;
+		registers.forEach(item => viewService.addItemToTable(item, this.$table));
+		document.querySelector('#total').innerText = `Horas totales: ${viewService.sec2time(totalSeconds)}`;
+	}
 
-    for (const key in formatedData) {
-        sortedData.push({
-            key: key,
-            date: new Date(key),
-            register: formatedData[key].register,
-            seconds: formatedData[key].seconds,
-        });
-    }
-    sortedData.sort((a, b) => a.date.getTime() - b.date.getTime());
-
-    sortedData.forEach(item => {
-        totalSeconds += item.seconds;
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-                <td>${item.key}</td>
-                <td>
-                    ${_printRegister(item.register)}
-                </td>
-                <td>${_sec2time(item.seconds)}</td>
-            `;
-        $table.appendChild(tr);
-    });
-
-    document.querySelector('#total').innerText = `Horas totales: ${_sec2time(totalSeconds)}`;
-})();
-
-
-function _printRegister(registers) {
-    return registers.map(register => `<p>${_pad(register.date.getHours(), 2)}:${_pad(register.date.getMinutes(), 2)} - ${register.action === 'SIGN_IN' ? 'Entrada' : 'Salida'}</p>`).join('');
-}
-
-function _sec2time(timeInSeconds) {
-    const time = parseFloat(timeInSeconds).toFixed(3);
-    const hours = Math.floor(time / 60 / 60);
-    const minutes = Math.floor(time / 60) % 60;
-
-    return _pad(hours, 2) + ':' + _pad(minutes, 2);
-}
-
-function _pad(num, size) {
-    return ('000' + num).slice(size * -1);
+	_onMonthSelected(event) {
+		this.searchParams.set('m', event.target.value);
+		window.location.href = urlService.build(this.searchParams);
+	}
 }

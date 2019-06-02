@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Informe de Horas Trabajadas</title>
-    <script type="module" src="src/app.js"></script>
+    <script type="module" src="src/index.js"></script>
     <style>
         html,
         body {
@@ -85,6 +85,7 @@
             aside {
                 display: none;
             }
+
         }
 
         aside {
@@ -92,6 +93,11 @@
             right: 30px;
             bottom: 30px;
             z-index: 1;
+        }
+
+        aside button img {
+            display: block;
+            width: 100%;
         }
 
         aside button {
@@ -102,11 +108,18 @@
             border-radius: 50%;
             cursor: pointer;
             padding: 8px;
+            display: inline-block;
         }
 
         aside button:hover,
         aside button:focus {
             background: #296b63;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     </style>
 </head>
@@ -117,7 +130,26 @@
         <span>Easy Work Hours</span>
     </header>
     <main>
-        <p id="total"></p>
+        <div class="header">
+            <p id="total"></p>
+            <select name="filter" id="select-month">
+
+                <option value="-1">Filtrar por mes</option>
+                <option value="0">Enero</option>
+                <option value="1">Febrero</option>
+                <option value="2">Marzo</option>
+                <option value="3">Abril</option>
+                <option value="4">Mayo</option>
+                <option value="5">Junio</option>
+                <option value="6">Julio</option>
+                <option value="7">Agosto</option>
+                <option value="8">Septiembre</option>
+                <option value="9">Octubre</option>
+                <option value="10">Noviembre</option>
+                <option value="11">Diciembre</option>
+            </select>
+        </div>
+
         <table id="table">
             <thead>
                 <th>Fecha</th>
